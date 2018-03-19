@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--数据库驱动-->
+    <!--
+        如果IDE(eclipse或者idea) 项目里导入了jar包，那么就不需要配置了jar包的绝对路径了
+         <classPathEntry    location="e:/project/mybatis/lib/mysql-connector-java-5.0.8-bin.jar"/>
+    -->
+    <!-- 导入数据库配置文件 -->
+    <context id="ssmTables"    targetRuntime="MyBatis3">
+        <plugin type="cn.util.OverIsMergeablePlugin"/>
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!--是否去除所有自动生成的注释-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/bbs" userId="root" password="">
+        </jdbcConnection>
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+           NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="cn.entity" targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Mapper接口存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--生成对应表及类名-->
+        <table tableName="users" domainObjectName="User" >
+        </table>
+        <table tableName="tags" domainObjectName="Tag" >
+        </table>
+        <table tableName="tag_forum" domainObjectName="TagForum" >
+        </table>
+        <table tableName="recommonds" domainObjectName="Recommond" >
+        </table>
+        <table tableName="posts" domainObjectName="Post" >
+        </table>
+        <table tableName="forums" domainObjectName="Forum" >
+        </table>
+        <table tableName="categories" domainObjectName="Category" >
+        </table>
+    </context>
+</generatorConfiguration>
